@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017/web-2', (error) => {
   if (error) {
     throw error;
   } else {
-    console.log("Connect to mongodb success.. ");
+    console.log("Connect to mongodb success..");
     const app = express();
 
     // user middleware
@@ -24,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/web-2', (error) => {
       secret: 'keyboard main',
       resave: false,
       saveUninitialized: true,
+      cookie: { secure:false },
     }));
     app.use(express.static('public'));
 

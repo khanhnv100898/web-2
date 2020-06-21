@@ -82,7 +82,10 @@ userRouter.post('/login', async (req, res) => {
         req.session.currentUser = {
           _id: existedEmail._id,
           email: existedEmail.email,
-        }
+        };
+        // TODO test sessions
+        console.log(req.session.currentUser);
+
         res.status(200).json({
           success: true,
           message: 'Login success!',
