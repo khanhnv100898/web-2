@@ -5,39 +5,50 @@ const expressSession = require('express-session');
 const cors = require('cors');
 const userRouter = require('./modules/users/users.router');
 const postRouter = require('./modules/posts/posts.router');
+const uploadsRouter = require('./modules/uploads/uploads.router');
 
 mongoose.connect('mongodb://localhost:27017/web-2', (error) => {
   if (error) {
+    console.log(error);
     throw error;
   } else {
     console.log("Connect to mongodb success..");
-    const app = express();
+    
+    const server = express();
 
     // user middleware
-    app.use(cors({
+    server.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      next();
+
+    });
+    server.use(cors({
       origin: 'http://localhost:3000',
       credentials: true,
     }));
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(expressSession({
+    server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({ extended: false }));
+    server.use(expressSession({
       secret: 'keyboard main',
       resave: false,
       saveUninitialized: true,
-      cookie: { secure:false },
+      cookie: { secure: false },
     }));
-    app.use(express.static('public'));
+    server.use(express.static('public'));
 
     //routers
-    app.use('/api/users', userRouter);
-    app.use('/api/posts',postRouter);
+    server.use('/api/users', userRouter);
+    server.use('/api/posts', postRouter);
+    server.use('/api/uploads', uploadsRouter);
 
     // start server
-    app.listen(3000, (error) => {
+    server.listen(3001, (error) => {
       if (error) {
         throw error;
       }
-      console.log('Server listen on port 3000..');
+      console.log('Server listen on port 3001..');
     });
   }
 });

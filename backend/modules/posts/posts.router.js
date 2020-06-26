@@ -74,13 +74,13 @@ postRouter.get('/:id', async (req, res) => {
 postRouter.get('/', async (req, res) => {
   try {
     const pageNumber = Number(req.query.pageNumber);
-    const pgaeSize = Number(req.query.pgaeSize);
+    const pageSize = Number(req.query.pageSize);
 
     const total = await PostsModel.find().countDocuments();
     const data = await PostsModel.find()
       .populate('author')
-      .skip((pageNumber - 1) * pgaeSize)
-      .limit(pgaeSize)
+      .skip((pageNumber - 1) * pageSize)
+      .limit(pageSize)
       .lean();
 
     res.status(200).json({

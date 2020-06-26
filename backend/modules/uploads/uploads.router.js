@@ -8,6 +8,8 @@ const upload = multer({
 });
 
 uploadsRouter.post('/image', upload.single('image'), async (req, res) => {
+  // console.log(req.file);
+
   // validate
   const fileTypeRegex = /\.(jpg|jpeg|png)$/i;
   const maxFileSize = 2000000;
@@ -38,3 +40,5 @@ uploadsRouter.post('/image', upload.single('image'), async (req, res) => {
     });
   }
 });
+
+module.exports = uploadsRouter; 

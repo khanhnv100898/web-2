@@ -109,7 +109,7 @@ userRouter.get('/logout', (req, res) => {
   });
 });
 
-// Test session user
+// Lay thong tin dang nhap
 userRouter.get('/get-current-user', (req, res) => {
   if (req.session.currentUser) {
     res.status(200).json({
