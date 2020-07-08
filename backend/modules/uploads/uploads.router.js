@@ -3,6 +3,7 @@ const multer = require('multer');
 const fs = require('fs');
 
 const uploadsRouter = express.Router();
+
 const upload = multer({
   dest: 'public/',
 });

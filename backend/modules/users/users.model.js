@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  likePost: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+  }],
 }, {
   timestamps: true,
 });

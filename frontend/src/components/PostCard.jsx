@@ -25,8 +25,9 @@ export default class PostCard extends Component {
           >
             {this.props.content}
           </p>
-          <p>
-            <p className="far fa-heart" ></p>
+          <p className="container">
+            <p className="far fa-heart ml-3 pr-3" > 2.000</p>
+            <i className="far fa-comment-alt ml-3"> 60</i>
           </p>
         </div>
       </div>

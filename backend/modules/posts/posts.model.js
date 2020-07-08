@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { string } = require('@hapi/joi');
 
 const PostSchema = new mongoose.Schema({
   view: {
@@ -20,6 +21,15 @@ const PostSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+  },
+  listUserLike: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+  comment: [{ body: String, date: Date }],
+  date:{
+    type:Date,
+    default:Date.now,
   },
 }, {
   timestamps: true,

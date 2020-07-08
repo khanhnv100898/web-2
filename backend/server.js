@@ -6,6 +6,7 @@ const cors = require('cors');
 const userRouter = require('./modules/users/users.router');
 const postRouter = require('./modules/posts/posts.router');
 const uploadsRouter = require('./modules/uploads/uploads.router');
+const likeRouter = require('./modules/interactive/likes.router');
 
 mongoose.connect('mongodb://localhost:27017/web-2', (error) => {
   if (error) {
@@ -42,6 +43,7 @@ mongoose.connect('mongodb://localhost:27017/web-2', (error) => {
     server.use('/api/users', userRouter);
     server.use('/api/posts', postRouter);
     server.use('/api/uploads', uploadsRouter);
+    server.use('/api/interactives', likeRouter);
 
     // start server
     server.listen(3001, (error) => {

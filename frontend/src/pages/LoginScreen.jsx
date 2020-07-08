@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./LoginScreen.css";
 
 export default class LoginScreen extends Component {
   state = {
@@ -76,44 +77,49 @@ export default class LoginScreen extends Component {
   // eslint-disable-next-line
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <p className="text-danger">{this.state.errorMessage}</p>
-
-          {this.state.loading ? (
-            <div className="spinner-border" role="status">
-              <span className="sr-only">Loding.....</span>
+      <div
+        className="bg-login"
+        style={{}}
+      >
+        <div className="container">
+          <form className="login-form" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label>Email address</label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                We'll never share your email with anyone else.
+              </small>
             </div>
-          ) : (
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          )}
-        </form>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                value={this.state.password}
+                onChange={this.handlePasswordChange}
+              />
+            </div>
+            <p className="text-danger">{this.state.errorMessage}</p>
+
+            {this.state.loading ? (
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loding.....</span>
+              </div>
+            ) : (
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+            )}
+          </form>
+        </div>
       </div>
     );
   }
